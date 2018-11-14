@@ -1,0 +1,15 @@
+.TodoList{
+    margin-top: 15px;
+}
+.TodoList button{
+    margin: 0 5px;
+}
+.TodoList li{
+    margin: 3px 0;
+    border: 1px solid transparent;
+    transition: ease .3s;
+    cursor: pointer;
+}
+.TodoList li:hover{
+    border: 1px solid #000;
+}
