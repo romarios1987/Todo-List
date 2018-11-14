@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const TodoList = () => {
+    return (
+        <ul>
+            <li>Learn React</li>
+            <li>Build React</li>
+        </ul>
+    )
+};
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const AppHeader = () => <h1>My Todo List</h1>;
+
+const SearchPanel = () => {
+    return <input type="text" placeholder={'search'}/>
+};
+
+const App = () => {
+    return (
+        <div>
+            <AppHeader/>
+            <SearchPanel/>
+            <TodoList/>
+        </div>
+    )
+};
+
+ReactDOM.render(<App/>, document.getElementById('root'));
