@@ -20,19 +20,21 @@ const TodoList = ({todos}) => {
 
                 <div>
                     <button type="button" className="btn btn-outline-danger">
-                        <i className="far fa-trash-alt"></i>
+                        <i className="far fa-trash-alt"/>
                     </button>
                     <button type="button" className="btn btn-outline-success">
-                        <i className="far fa-star"></i>
+                        <i className="far fa-star"/>
                     </button>
                 </div>
             </li>
         )
     });
     return (
-        <ul className="list-group TodoList">
-            {elements}
-        </ul>
+        <>
+            <ul className="list-group TodoList">
+                {elements}
+            </ul>
+        </>
     )
 };
 export default TodoList;
