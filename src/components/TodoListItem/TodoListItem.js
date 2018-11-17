@@ -11,23 +11,53 @@ export default class TodoListItem extends Component {
     //     };
     // }
 
+
+    state = {
+        done: false,
+        important: false
+    };
+
     onLabelClick = () => {
+        this.setState({
+            done: true
+        });
         console.log(`Done: ${this.props.label}`)
     };
 
+    onMarkImportant = () => {
+        this.setState({
+            important: true
+        });
+    };
+
+
     render() {
 
-        const {label, important = false} = this.props;
+        const {label} = this.props;
+        const {done, important} = this.state;
 
-        const styleSpan = {
-            color: important ? 'red' : 'clack',
-            fontWeight: important ? '500' : 'normal'
-        };
+        let className = 'TodoListItem d-flex justify-content-between align-items-center';
+        if (done) {
+            className += ' done'
+        }
+        if (important) {
+            className += ' important'
+        }
+
         return (
-            <span className="TodoListItem" style={styleSpan}
-                  onClick={this.onLabelClick}>
-                {label}
+            <span className={className}>
+                <span onClick={this.onLabelClick}>{label}</span>
+                <span>
+                    <button type="button" className="btn btn-outline-danger">
+                        <i className="far fa-trash-alt"/>
+                    </button>
+                    <button type="button" className="btn btn-outline-success" onClick={this.onMarkImportant}>
+                        <i className="far fa-star"/>
+                    </button>
+                </span>
             </span>
+
+
         )
     }
 }

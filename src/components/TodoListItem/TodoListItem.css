@@ -1,3 +1,12 @@
-.TodoListItem{
-    font-weight: 500;
+.TodoListItem {
+     font-weight: 500;
+ }
+
+.TodoListItem.done {
+    text-decoration-line: line-through;
+}
+
+.TodoListItem.important {
+    font-weight: bold;
+    color: #ff000b;
 }

@@ -11,21 +11,12 @@ const TodoList = ({todos}) => {
         const {id, ...itemProps} = item;
 
         return (
-            <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+            <li key={item.id} className="list-group-item">
                 <TodoListItem
                     {...itemProps}
                     // label={item.label}
                     // important={item.important}
                 />
-
-                <div>
-                    <button type="button" className="btn btn-outline-danger">
-                        <i className="far fa-trash-alt"/>
-                    </button>
-                    <button type="button" className="btn btn-outline-success">
-                        <i className="far fa-star"/>
-                    </button>
-                </div>
             </li>
         )
     });
