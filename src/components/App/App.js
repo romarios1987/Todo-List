@@ -2,9 +2,13 @@ import AppHeader from "../AppHeader/AppHeader";
 import SearchPanel from "../SearchPanel/SearchPanel";
 import TodoList from "../TodoList/TodoList";
 import React, {Component} from "react";
+import ItemAddForm from "../ItemAddForm/ItemAddForm";
 
 
 export default class App extends Component {
+
+
+    maxId = 100;
 
     state = {
         todoData: [
@@ -16,6 +20,31 @@ export default class App extends Component {
     };
 
 
+    // Add Item
+    addItem = (text) => {
+        // Generate ID
+        const newItem = {
+            label: text,
+            important: false,
+            id: this.maxId++
+        };
+
+        // Add element to array
+        this.setState(({todoData}) => {
+
+            // new Array
+            const newArray = [
+                ...todoData, newItem
+            ];
+            return {
+                todoData: newArray
+            }
+
+        })
+
+    };
+
+    // Delete Item
     deleteItem = (id) => {
         this.setState(({todoData}) => {
 
@@ -27,7 +56,10 @@ export default class App extends Component {
             // const before = todoData.slice(0, idx);
             // const after = todoData.slice(idx + 1);
 
-            const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
+            const newArray = [
+                ...todoData.slice(0, idx),
+                ...todoData.slice(idx + 1)
+            ];
 
             return {
                 todoData: newArray
@@ -54,6 +86,7 @@ export default class App extends Component {
                                 todos={this.state.todoData}
                                 onDeleted={this.deleteItem}
                             />
+                            <ItemAddForm onItemAdded={this.addItem}/>
                         </div>
                     </div>
                 </div>
