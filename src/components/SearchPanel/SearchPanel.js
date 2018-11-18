@@ -1,8 +1,12 @@
 import React, {Component} from "react";
 import './SearchPanel.css';
 
-export default class SearchPanel extends Component{
-    render(){
+export default class SearchPanel extends Component {
+
+    render() {
+        console.log(this.props);
+
+        const {toDo, done} = this.props;
         return (
             <div className='d-flex flex-column m-auto'>
                 <input className="SearchPanel form-control" type="text" placeholder={'Search'}/>
@@ -12,7 +16,7 @@ export default class SearchPanel extends Component{
                         <button type="button" className="btn btn-light">Active</button>
                         <button type="button" className="btn btn-light">Done</button>
                     </div>
-                    <span style={{fontWeight:'500'}}>1 more to do, 3 done</span>
+                    <span style={{fontWeight: '500'}}>{toDo} more to do, {done} done</span>
                 </div>
             </div>
         )
