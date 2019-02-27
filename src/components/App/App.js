@@ -16,7 +16,8 @@ export default class App extends Component {
             this.createTodoItem('Have a lunch'),
         ],
         term: '',
-        filter: 'all' // active, all, done
+        filter: 'all',  // active, all, done,
+        statusMessage: null
     };
 
     createTodoItem(label) {
@@ -28,23 +29,31 @@ export default class App extends Component {
         };
     }
 
+
     // Add Item
     addItem = (text) => {
-        // Generate ID
-        const newItem = this.createTodoItem(text);
+        
+        if (text !== '') {
+            // Generate ID
+            const newItem = this.createTodoItem(text);
 
-        // Add element to array
-        this.setState(({todoData}) => {
+            // Add element to array
+            this.setState(({todoData}) => {
 
-            // new Array
-            const newArray = [
-                ...todoData, newItem
-            ];
-            return {
-                todoData: newArray
-            }
+                // new Array
+                const newArray = [
+                    ...todoData, newItem
+                ];
+                return {
+                    todoData: newArray
+                }
 
-        })
+            })
+        }else {
+            this.setState({statusMessage: 'Please Enter Task'});
+            setTimeout(()=>this.setState({statusMessage: ''}),3000)
+
+        }
 
     };
 
@@ -150,7 +159,7 @@ export default class App extends Component {
             background: '#9d8aec'
         };
 
-        const {todoData, term, filter} = this.state;
+        const {todoData, term, filter, statusMessage} = this.state;
         const visibleItems = this.filter(this.search(todoData, term), filter);
 
         const doneCount = todoData.filter((el) => el.done).length;
@@ -162,7 +171,7 @@ export default class App extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <AppHeader/>
+                            <AppHeader statusMessage={statusMessage}/>
                             <SearchPanel
                                 toDo={todoCount}
                                 done={doneCount}
